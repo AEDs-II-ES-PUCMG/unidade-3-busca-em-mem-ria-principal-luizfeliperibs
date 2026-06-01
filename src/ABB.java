@@ -312,23 +312,17 @@ public class ABB<K, V> implements IMapeamento<K, V>{
 			return;
 		}
 
-		if(comparador.compare(raiz.getChave(), chaveDeOnde) > 0) {
+		if(comparador.compare(no.getChave(), chaveDeOnde) > 0) {
 			recortar(no.getEsquerda(), chaveDeOnde, chaveAteOnde, resultado);
 		}
 
-		if(comparador.compare(raiz.getChave(), chaveDeOnde) >= 0 && comparador.compare(raiz.getChave(), chaveAteOnde) <= 0) {
-			recortar(no.getDireita(), chaveDeOnde, chaveAteOnde, resultado);
+		if(comparador.compare(no.getChave(), chaveDeOnde) >= 0 && comparador.compare(no.getChave(), chaveAteOnde) <= 0) {
+			resultado.inserir(no.getItem());
 		}
 
-		if(comparador.compare(raiz.getChave(), chaveAteOnde) < 0){
+		if(comparador.compare(no.getChave(), chaveAteOnde) < 0){
 			recortar(no.getDireita(), chaveDeOnde, chaveAteOnde, resultado);
 		}
-
-	}
-
-	public static <K> Produto localizarProduto(ABB<K, Produto> produtosCadastrados, K procurado) {
-
-		
 
 	}
 

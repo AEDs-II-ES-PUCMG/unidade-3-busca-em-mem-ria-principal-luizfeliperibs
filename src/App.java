@@ -110,25 +110,35 @@ public class App {
     }
     
     static <K> Produto localizarProduto(ABB<K, Produto> produtosCadastrados, K procurado) {
-    	
-    	// TODO
-    	return null;
-    }
+
+		try {
+			return produtosCadastrados.pesquisar(procurado);
+		} catch (NoSuchElementException e) {
+			return null;
+		}
+
+	}
     
     /** Localiza um produto na árvore de produtos organizados por id, a partir do código de produto informado pelo usuário, e o retorna. 
      *  Em caso de não encontrar o produto, retorna null */
     static Produto localizarProdutoID(ABB<Integer, Produto> produtosCadastrados) {
-        
-        //TODO
-    	return null;
+
+        System.out.println("Digite o código do produto: ");
+        int codigo = Integer.parseInt(teclado.nextLine());
+
+        return localizarProduto(produtosCadastrados, codigo);
+
     }
     
     /** Localiza um produto na árvore de produtos organizados por nome, a partir do nome de produto informado pelo usuário, e o retorna. 
      *  A busca não é sensível ao caso. Em caso de não encontrar o produto, retorna null */
     static Produto localizarProdutoNome(ABB<String, Produto> produtosCadastrados) {
         
-    	//TODO
-    	return null;
+    	System.out.println("Digite o nome do produto: ");
+		String nome = teclado.nextLine().toLowerCase();
+
+        return localizarProduto(produtosCadastrados, nome);
+
     }
     
     private static void mostrarProduto(Produto produto) {
@@ -154,32 +164,65 @@ public class App {
     /** Localiza e remove um produto da árvore de produtos organizados por id, a partir do código de produto informado pelo usuário, e o retorna. 
      *  Em caso de não encontrar o produto, retorna null */
     static Produto removerProdutoId(ABB<Integer, Produto> produtosCadastrados) {
-    	//TODO
-    	return null;
+
+        System.out.println("Digite o ID do produto: ");
+        int codigo = teclado.nextInt();
+
+    	return removerProduto(produtosCadastrados, codigo);
+
     }
 
      /** Localiza e remove um produto na árvore de produtos organizados por nome, a partir do nome de produto informado pelo usuário, e o retorna. 
       *  A busca não é sensível ao caso. Em caso de não encontrar o produto, retorna null */
     static Produto removerProdutoNome(ABB<String, Produto> produtosCadastrados) {
-    	//TODO
-    	return null;
+    	
+        System.out.println("Digite o nome do produto: ");
+		String nome = teclado.nextLine().toLowerCase();
+
+        return removerProduto(produtosCadastrados, nome);
+
     }
 
     static <K> Produto removerProduto(ABB<K, Produto> produtosCadastrados, K chave){
-    	//TODO
-    	return null;
+    	
+        try {
+            return produtosCadastrados.remover(chave);
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+
     }
     
     private static <K> void recortarProduto(ABB<K, Produto> produtosCadastrados, K deOnde, K ateOnde) {
-    	//TODO
+    	
+        Lista<Produto> resultado = produtosCadastrados.recortar(deOnde, ateOnde);
+
+        System.out.println(resultado);
+
     }
     
     private static void recortarProdutosNome(ABB<String, Produto> produtosCadastrados) {
-    	//TODO
+    	
+        System.out.println("Digite dois nomes correspondentes ao início e fim do recorte:");
+        System.out.println("Inicio:");
+        String inicio = teclado.nextLine();
+        System.out.println("Fim:");
+        String fim = teclado.nextLine();
+
+        recortarProduto(produtosCadastrados, inicio, fim);
+
     }
      
     private static void recortarProdutosId(ABB<Integer, Produto> produtosCadastrados) {
-    	//TODO
+    	
+        System.out.println("Digite dois ID's correspondentes ao início e fim do recorte:");
+        System.out.println("Inicio:");
+        int inicio = teclado.nextInt();
+        System.out.println("Fim:");
+        int fim = teclado.nextInt();
+
+        recortarProduto(produtosCadastrados, inicio, fim);
+
     }
     
     public static void main(String[] args) {
