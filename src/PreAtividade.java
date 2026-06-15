@@ -58,25 +58,29 @@ public static void main(String [] args) {
         avlCrescente.inserir(listaDezMil.get(i), listaDezMil.get(i));
     }
 
-    comparacoesABB = 0;
+    int comparacoesABBCrescente = 0;
 
-    comparacoesAVL = 0;
+    int comparacoesAVLCrescente = 0;
+
+    int tempoAVLCrescente = 0;
+
+    int tempoABBCresente = 0;
 
     for (int i = 0; i < 1000; i++) {
 
         abbCrescente.pesquisar(listaMil.get(i));
-        comparacoesABB += abb.getComparacoes();
-        tempoABB += abb.getTempo();
+        comparacoesABBCrescente += abb.getComparacoes();
+        tempoABBCresente += abb.getTempo();
 
         avlCrescente.pesquisar(listaMil.get(i));
-        comparacoesAVL += avl.getComparacoes();
-        tempoAVL += avl.getTempo();
+        comparacoesAVLCrescente += avl.getComparacoes();
+        tempoAVLCrescente += avl.getTempo();
 
     }
 
-    System.out.println("Comparacoes ABB = " + comparacoesABB);
-    System.out.println("Tempo ABB = " + tempoABB);
-    System.out.println("Comparacoes AVL = " + comparacoesAVL);
-    System.out.println("Tempo AVL = " + tempoAVL);
+    System.out.println("Comparacoes ABB Crescente = " + comparacoesABBCrescente);
+    System.out.println("Tempo ABB Crescente = " + tempoABBCresente);
+    System.out.println("Comparacoes AVL Cresente = " + comparacoesAVLCrescente);
+    System.out.println("Tempo AVL Crescente = " + tempoAVLCrescente);
 
 }
